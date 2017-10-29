@@ -18,16 +18,36 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         if(id === "deviceready" || id === "DOMContentLoaded"){
-            this.initLeaflet();
+            this.initMap();
         }
     },
 
-    initLeaflet: function(){
-        var map = L.map('map').setView([61.6894343, 27.2789637], 15);
-        var wmsLayer = L.tileLayer.wms('http://kartta.liikennevirasto.fi/meriliikenne/dgds/wms_ip/merikartta?', {
-        layers: 'background,cities,cells'
-            }).addTo(map);
+    initMap: function(){
+        var layers = [
+  /**          new ol.layer.Tile({
+              source: new ol.source.OSM()
+            }), **/
+            new ol.layer.Tile({
+              //extent: [-13884991, 2870341, -7455066, 6338219],
+              source: new ol.source.TileWMS({
+                url: 'http://kartta.liikennevirasto.fi/meriliikenne/dgds/wms_ip/merikartta?',
+                params: {'LAYERS': 'background,cities,cells', 'TILED': true},
+                serverType: 'geoserver'
+              })
+            })
+          ];
+          var map = new ol.Map({
+            layers: layers,
+            target: 'map',
+            view: new ol.View({
+              center: ol.proj.fromLonLat([27.2789637,61.6894343]),
+              zoom: 17
+            })
+          });
     }
 };
 
+//Map url: http://kartta.liikennevirasto.fi/meriliikenne/dgds/wms_ip/merikartta?
+//layers: 'background,cities,cells'
+//center: [61.6894343, 27.2789637]
 app.initialize();
