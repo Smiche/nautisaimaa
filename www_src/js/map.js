@@ -23,7 +23,7 @@ var app = {
     },
 
     initMap: function(){
-        var layers = [
+             var layers = [
   /**          new ol.layer.Tile({
               source: new ol.source.OSM()
             }), **/
