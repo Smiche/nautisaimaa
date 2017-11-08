@@ -15,6 +15,8 @@ Possible features:
 
 | Tech used |
 | --------------:|
+| react |
+| webpack, babel |
 | cordova |
 | html, js, css |
 | openlayers3 |
