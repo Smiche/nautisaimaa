@@ -18,11 +18,15 @@ Possible features:
 | react |
 | webpack, babel |
 | cordova |
-| html, js, css |
 | openlayers3 |
 
-To run:
+To run on mobile:
 ```sh
 $ cordova platform add android
 $ cordova run android
+```
+
+To build distributable:
+```sh
+$ webpack
 ```
